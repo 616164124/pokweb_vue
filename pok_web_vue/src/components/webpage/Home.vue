@@ -1,8 +1,9 @@
 <template>
-<div class="home">
-  <div v-for:key="item in items">
-  <a>{{item}}</a>
-  </div>
+  <div class="home">
+    <div v-for="(item,i) in items">
+      <p>{{i}} {{ item }}</p>
+    </div>
+    <div>{{data}}</div>
   </div>
 </template>
 
@@ -12,13 +13,14 @@ export default {
   data() {
     return {
       username: '',
-      items:{}
+      items: ["qeq", "qeqe"],
+      data:""
     }
   },
-  created:{
-    create(){
-      console.log("home")
-    }
+  created() {
+    var data =new Date();
+    this.data = data.getDate();
+
   }
 
 }

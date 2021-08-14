@@ -1,6 +1,6 @@
 <template>
   <div class="HelloWorld">
-<button @click="Jump()">To Login</button>
+<button @click="Jump">To Login</button>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     }
   },
   methods:{
-    Jump(){
+    Jump:function (){
       this.$router.push("/login");
     }
   }

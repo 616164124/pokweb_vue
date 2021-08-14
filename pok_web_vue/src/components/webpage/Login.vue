@@ -4,18 +4,23 @@
     <input class="login-input" type="password" v-model="password" placeholder="请输入密码">
     <button @click="login()">登录</button>
     <button @click="register()">注册</button>
+    <button @click="anniu">按钮</button>
+     <p>{{date}}</p>
+    <Home/>
   </div>
 </template>
 
 <script>
 import axios from "axios"
-
+import Home from "./Home";
 export default {
   name: "Login",
+  components: {Home},
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      date:''
     }
   },
 
@@ -37,6 +42,17 @@ export default {
     },
     register() {
       //    this.$router.push("/register");
+    },
+    anniu:function (){
+      console.log(this.date);
+    }
+
+  },
+  created: {
+    create: function () {
+      console.log("created");
+      const date = new Date();
+      this.date = date.getDay()
     }
   }
 }
