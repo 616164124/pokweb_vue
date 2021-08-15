@@ -1,0 +1,3 @@
+configureWebpack:{
+  devtool: 'source-map'
+}

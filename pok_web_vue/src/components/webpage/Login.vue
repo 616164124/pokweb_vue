@@ -5,12 +5,14 @@
     <button @click="login()">登录</button>
     <button @click="register()">注册</button>
     <button @click="anniu">按钮</button>
+    <button @click="myget">调用封装的方法</button>
      <p>{{date}}</p>
     <Home/>
   </div>
 </template>
 
 <script>
+import {get} from "../../plugin/axios"
 import axios from "axios"
 import Home from "./Home";
 export default {
@@ -45,7 +47,11 @@ export default {
     },
     anniu:function (){
       console.log(this.date);
+    },
+    myget(){
+      get("")
     }
+
 
   },
   created: {
