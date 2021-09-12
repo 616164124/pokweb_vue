@@ -1,28 +1,34 @@
 <template>
   <div class="HelloWorld">
-<button @click="Jump">To Login</button>
+    <button @click="Jump">To Login</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+      msg: "Welcome to Your Vue.js App",
+    };
   },
-  methods:{
-    Jump:function (){
+  methods: {
+    Jump: function () {
       this.$router.push("/login");
-    }
-  }
-}
+    },
+  },
+  created: {
+    test: function () {
+      console.log("123");
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

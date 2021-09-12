@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import Url from "../../url"
 export default {
   name: "Home",
   data() {
@@ -20,6 +21,13 @@ export default {
   created() {
     var data =new Date();
     this.data = data.getDate();
+    //获取菜单
+    axios.get("hostlocal:4000\pokweb\getMenu",{
+
+  }).then((res)=>{
+      console.log(res);
+
+    })
 
   }
 

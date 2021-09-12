@@ -5,10 +5,13 @@ import Login from "../components/webpage/Login";
 import Home from "../components/webpage/Home";
 Vue.use(Router)
 
-export default new Router({
+
+export default new Router({  
   routes: [
     {
       path: '/',
+      mode:'history',
+      base:'/vue/',
       name: 'HelloWorld',
       component: HelloWorld
     },
