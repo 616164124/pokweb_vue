@@ -13,13 +13,24 @@ export default {
   data() {
     return {
       username: '',
-      items: ["qeq", "qeqe"],
+      items: ["qeq", "qeqe","uiuuu","ooooo"],
       data:""
     }
   },
   created() {
     var data =new Date();
     this.data = data.getDate();
+    console.log(this.data)
+
+  },
+  mounted() {
+    localStorage.clear();
+    console.log(this.data)
+    if(localStorage.name ){
+      localStorage.name="oooo";
+    }else {
+      localStorage.setItem("name","1312")
+    }
 
   }
 
