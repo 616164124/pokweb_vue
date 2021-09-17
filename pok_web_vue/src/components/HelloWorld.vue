@@ -1,11 +1,11 @@
 <template>
   <div class="HelloWorld">
-    <button @click="Jump">To Login</button>
-    <select v-model="selected">
-      <option v-for="option in options" v-bind:value="option.value">
+    <button @click="jump()">To Login</button>
+    <!-- <select v-model="selected">
+      <option v-for="option in options" v-bind:option="option.value">
         {{ option.text }}
       </option>
-    </select>
+    </select> -->
     <span>Selected: {{ selected }}</span>
 
   </div>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      selected: 'A',//select选中的值
+      selected: 'A',//selectѡ�е�ֵ
       options: [
         {text: 'One', value: 'A'},
         {text: 'Two', value: 'B'},
@@ -26,20 +26,23 @@ export default {
       ]
     }
   },
-  created: {
-
-    methods: {
-      Jump: function () {
-        this.$router.push("/login");
-      }
+  methods:{
+    jump(){
+      this.$router.push("/login")
     }
+  },
+  created: {
+    test: function () {
+      console.log("123");
+    }
+    },
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lange="less" scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 

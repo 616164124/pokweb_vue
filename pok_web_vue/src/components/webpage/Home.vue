@@ -1,39 +1,43 @@
 <template>
   <div class="home">
-    <div v-for="(item,i) in items">
-      <p>{{i}} {{ item }}</p>
+
+    <div v-for="(item ,i) in data">
+      <a @dblclick="menu(item.menu_url)">{{ item.menu_name }}</a>
+      <p></p>
     </div>
-    <div>{{data}}</div>
   </div>
 </template>
 
 <script>
+import Url from "../../url"
+import axios from "axios";
+
 export default {
   name: "Home",
   data() {
     return {
       username: '',
-      items: ["qeq", "qeqe","uiuuu","ooooo"],
-      data:""
+      items: ["qeq", "qeqe"],
+      data: {}
     }
   },
   created() {
-    var data =new Date();
+    console.log("home.vue")
+    var data = new Date();
     this.data = data.getDate();
-    console.log(this.data)
+    var item = sessionStorage.getItem("token");
+    console.log(item)
+    //获取菜单
+    axios.get("http://localhost:4000/pokweb/getMenu" + "?token=" + item).then((res) => {
+      this.data = res.data.resultObj
+    })
 
   },
-  mounted() {
-    localStorage.clear();
-    console.log(this.data)
-    if(localStorage.name ){
-      localStorage.name="oooo";
-    }else {
-      localStorage.setItem("name","1312")
+  methods: {
+    menu(e) {
+      this.$router.push("/"+e);
     }
-
   }
-
 }
 </script>
 

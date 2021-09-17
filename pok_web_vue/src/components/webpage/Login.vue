@@ -6,8 +6,7 @@
     <button @click="register()">注册</button>
     <button @click="anniu">按钮</button>
     <button @click="myget">调用封装的方法</button>
-     <p>{{date}}</p>
-    <Home/>
+
   </div>
 </template>
 
@@ -32,7 +31,7 @@ export default {
       axios.post("http://localhost:4000/pokweb/login", {id: this.username, password: this.password}).then((data) => {
         //data.data.resultObj.token
         if (data.data.resultCode == "200") {
-          sessionStorage.setItem(this.username, data.data.resultObj.token);
+          sessionStorage.setItem( "token", this.username+"_"+data.data.resultObj.token);
           this.$router.push("/home")
         } else {
           alert(data.data.resultMsg)

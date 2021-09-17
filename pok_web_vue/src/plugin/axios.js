@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const instance = axios.create({
-  baseURL:"http://localhost:",//baseURL会在发送请求的时候拼接url参数前面
+  baseURL:"http://localhost:4000",//baseURL会在发送请求的时候拼接url参数前面
   timeout:30000
 });
 
