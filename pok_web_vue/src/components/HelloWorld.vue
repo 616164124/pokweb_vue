@@ -1,24 +1,20 @@
 <template>
-  <el-container>
-    <el-aside width="200px" hight="100%">Aside</el-aside>
-    <el-container>
-      <el-header>
+  <div>
 
-        Header
-
-
-      </el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
-  </el-container>
+        <Login/>
+  </div>
 </template>
 
 <script>
+import Login from "./webpage/Login";
+import 'element-ui/lib/theme-chalk/index.css';
+
 export default {
   name: 'HelloWorld',
+  components: {Login},
   data() {
     return {
+
       msg: 'Welcome to Your Vue.js App',
       selected: 'A',//selectѡ�е�ֵ
       options: [
@@ -28,8 +24,8 @@ export default {
       ]
     }
   },
-  methods:{
-    jump(){
+  methods: {
+    jump() {
       this.$router.push("/login")
     }
   },
@@ -37,8 +33,8 @@ export default {
     test: function () {
       console.log("123");
     }
-    },
-  }
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -77,12 +73,6 @@ a {
 
 }
 
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
 
 body > .el-container {
   margin-bottom: 40px;
@@ -95,5 +85,11 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+.el-input__inner{
+  width: 40%;
+}
+Login {
+  text-align: center;
 }
 </style>
