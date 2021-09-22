@@ -28,7 +28,9 @@ export default {
     var item = sessionStorage.getItem("token");
     console.log(item)
     //获取菜单
-    axios.get("http://localhost:4000/pokweb/getMenu" + "?token=" + item).then((res) => {
+    axios.post("http://localhost:4000/pokweb/getMenu",{
+      "token":item
+    }).then((res) => {
       this.data = res.data.resultObj
     })
 

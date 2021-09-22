@@ -1,22 +1,25 @@
 <template>
   <el-container>
-    <el-aside width="200px" hight="100%">Aside</el-aside>
+<!--    <el-aside width="200px" hight="100%">Aside</el-aside>-->
     <el-container>
       <el-header>
-
-        Header
-
-
+        欢迎！！！
       </el-header>
-      <el-main>Main</el-main>
+      <el-main >
+      <div class="login">
+        <Login/>
+      </div>
+      </el-main>
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import Login from "./webpage/Login";
 export default {
   name: 'HelloWorld',
+  components:{Login},
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -62,6 +65,12 @@ a {
   color: #42b983;
 }
 
+.login{
+  float: left;
+  text-align: left;
+  relative:top;
+
+}
 .el-header, .el-footer {
   background-color: #B3C0D1;
   color: #333;
@@ -81,7 +90,8 @@ a {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  line-height: 560px;
+
 }
 
 body > .el-container {

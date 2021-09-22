@@ -1,14 +1,12 @@
 <template>
   <div class="login">
-
-
-    <form>
-    <el-input placeholder="请输入内容" v-model="input" name="name" clearable></el-input>
-    <el-input placeholder="请输入密码" v-model="input" name="password" show-password></el-input>
-    </form>
-    <!--    <input class="login-input" type="text" v-model="username" placeholder="请输入账号">-->
-    <!--    <input class="login-input" type="password" v-model="password" placeholder="请输入密码">-->
-    <!--    <button @click="login()">登录</button>-->
+<!--    <form>-->
+<!--    <el-input placeholder="请输入内容" type="text" v-model="input" name="name" clearable></el-input>-->
+<!--    <el-input placeholder="请输入密码"  type="password" v-model="input" name="password" show-password></el-input>-->
+<!--    </form>-->
+        <input class="login-input" type="text" v-model="username" placeholder="请输入账号">
+        <input class="login-input" type="password" v-model="password" placeholder="请输入密码">
+        <button @click="login()">登录</button>
     <!--    <button @click="register()">注册</button>-->
     <!--    <button @click="anniu">按钮</button>-->
     <!--    <button @click="myget">调用封装的方法</button>-->
@@ -71,5 +69,8 @@ export default {
 </script>
 
 <style scoped>
+.login-input{
+  margin: 0 0 0 0;
+}
 
 </style>
