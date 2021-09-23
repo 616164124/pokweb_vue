@@ -1,16 +1,16 @@
 <template>
-  <div class="login">
-<!--    <form>-->
-<!--    <el-input placeholder="请输入内容" type="text" v-model="input" name="name" clearable></el-input>-->
-<!--    <el-input placeholder="请输入密码"  type="password" v-model="input" name="password" show-password></el-input>-->
-<!--    </form>-->
-        <input class="login-input" type="text" v-model="username" placeholder="请输入账号">
-        <input class="login-input" type="password" v-model="password" placeholder="请输入密码">
-        <button @click="login()">登录</button>
-    <!--    <button @click="register()">注册</button>-->
-    <!--    <button @click="anniu">按钮</button>-->
-    <!--    <button @click="myget">调用封装的方法</button>-->
-
+  <div class="vue-login">
+    <div>
+      <el-radio v-model="radio" label="lsyh">临时用户</el-radio>
+      <el-radio v-model="radio" label="xs">学生</el-radio>
+      <el-radio v-model="radio" label="gzry">工作人员</el-radio>
+      <el-radio v-model="radio" label="admin">admin</el-radio>
+    </div>
+    <div class="vue-login1">
+      <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
+      <el-input placeholder="请输入密码" v-model="password" name="password" show-password></el-input>
+      <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
+    </div>
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default {
   components: {Home},
   data() {
     return {
-      username: '',
+      radio: "lsyh",
+      name: '',
       password: '',
       date: ''
     }
@@ -33,30 +34,32 @@ export default {
   methods: {
     login() {
       // console.log("login")
-      axios.post("http://localhost:4000/pokweb/login", {id: this.username, password: this.password}).then((data) => {
+      axios.post("http://localhost:4000/pokweb/login", {
+        name: this.name,
+        password: this.password,
+        radio: this.radio
+      }).then((data) => {
         //data.data.resultObj.token
         if (data.data.resultCode == "200") {
-          sessionStorage.setItem("token", this.username + "_" + data.data.resultObj.token);
+          sessionStorage.setItem("token", this.name + "_" + data.data.resultObj.token);
+          sessionStorage.setItem("user", JSON.parse(data.data.resultObj.user));
           this.$router.push("/home")
-        } else {
+        } else if (data.data.resultCode == "888888") {
           alert(data.data.resultMsg)
         }
 
       })
-      console.log(this.username)
-      console.log(this.password)
-    },
-    register() {
-      //    this.$router.push("/register");
-    },
-    anniu: function () {
-      console.log(this.date);
-    },
-    myget() {
-      get("")
-    }
 
-
+  },
+  register() {
+    //    this.$router.push("/register");
+  },
+  anniu: function () {
+    console.log(this.date);
+  },
+  myget() {
+    get("")
+  }
   },
   created: {
     create: function () {
@@ -68,9 +71,31 @@ export default {
 }
 </script>
 
-<style scoped>
-.login-input{
+<style>
+button {
+  margin-top: 10px;
+}
+
+.login-input {
   margin: 0 0 0 0;
 }
 
+
+.vue-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.el-input__inner {
+  width: 40% !important;
+}
+
+.el-input {
+  margin-top: 10px;
+}
+
+.el-button {
+  margin-top: 10px !important;
+}
 </style>
