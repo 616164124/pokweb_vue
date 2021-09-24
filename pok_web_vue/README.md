@@ -1,7 +1,9 @@
 # pokweb_vue
 
 > A Vue.js project
-
+该项目目前请求的地址大部分为http://localhost:4000/
+> 具体的地址请查看plugin文件夹下的UrlData.js和axios.js
+>
 ## Build Setup
 
 ui  https://element.eleme.cn/#/zh-CN/component/container

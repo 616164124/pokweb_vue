@@ -15,9 +15,10 @@
 </template>
 
 <script>
-import {get} from "../../plugin/axios"
+import axios1 from "../../plugin/axios"
 import axios from "axios"
 import Home from "./Home";
+import URLData from "../../plugin/UrlData"
 
 export default {
   name: "Login",
@@ -34,32 +35,35 @@ export default {
   methods: {
     login() {
       // console.log("login")
-      axios.post("http://localhost:4000/pokweb/login", {
+      axios.post(URLData.baseurl+URLData.login, {
         name: this.name,
         password: this.password,
         radio: this.radio
       }).then((data) => {
         //data.data.resultObj.token
         if (data.data.resultCode == "200") {
-          sessionStorage.setItem("token", this.name + "_" + data.data.resultObj.token);
-          sessionStorage.setItem("user", JSON.parse(data.data.resultObj.user));
-          this.$router.push("/home")
+          // console.log(data.data.resultObj.user)
+          sessionStorage.setItem("token",data.data.resultObj.token);
+          sessionStorage.setItem("user",JSON.stringify(data.data.resultObj.user));
+         this.$router.push("/home")
         } else if (data.data.resultCode == "888888") {
           alert(data.data.resultMsg)
         }
 
       })
 
-  },
-  register() {
-    //    this.$router.push("/register");
-  },
-  anniu: function () {
-    console.log(this.date);
-  },
-  myget() {
-    get("")
-  }
+    },
+    register() {
+      //    this.$router.push("/register");
+    },
+    anniu: function () {
+      console.log(this.date);
+    },
+    myget() {
+
+    }
+
+
   },
   created: {
     create: function () {

@@ -11,8 +11,7 @@ export default {
     }
   },
   created() {
-
-    console.log(JSON.parse(sessionStorage.getItem("user")))
+    this.userId=JSON.parse(sessionStorage.getItem("user")).name;
   }
 }
 </script>

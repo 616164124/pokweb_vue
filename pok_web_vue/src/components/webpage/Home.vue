@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import Url from "../../url"
 import axios from "axios";
 import User from "./User";
 export default {

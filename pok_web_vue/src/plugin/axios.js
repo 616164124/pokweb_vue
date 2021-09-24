@@ -24,17 +24,30 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 
 );
-export function get(url,params){
-  return instance.get(url,{
-    params
-  });
-}
-export function post(url,data){
-  return instance.post(url,data);
-}
-export function del(url){
-  return instance.del(url);
-}
-export function put(url,data){
-  return instance.put(url,data);
+
+
+
+/**
+ * 使用es6的export default导出了一个函数，导出的函数代替axios去帮我们请求数据，
+ * 函数的参数及返回值如下：
+ * @param {String} method  请求的方法：get、post、delete、put
+ * @param {String} url     请求的url:
+ * @param {Object} data    请求的参数
+ * @returns {Promise}     返回一个promise对象，其实就相当于axios请求数据的返回值
+ */
+export default function (method, url, data = null,config=null) {
+  method = method.toLowerCase();
+  url="http://localhost:4000"+url;
+  if (method == 'post') {
+    return instance.post(url, data,config)
+  } else if (method == 'get') {
+    return instance.get(url, { params: data})
+  } else if (method == 'delete') {
+    return instance.delete(url, { params: data })
+  }else if(method == 'put'){
+    return instance.put(url,data)
+  }else{
+    console.error('未知的method'+method)
+    return false
+  }
 }
