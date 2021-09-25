@@ -1,21 +1,26 @@
 import axios from 'axios'
 
+//axios 全局拦截设置 https://segmentfault.com/a/1190000022647152
 
 const instance = axios.create({
-  baseURL:"http://localhost:4000",//baseURL会在发送请求的时候拼接url参数前面
   timeout:30000
 });
 
 //请求拦截
 //所有的网络请求都会先走这个方法
-instance.interceptors.request.use(
-  function (config) {
-    console.group('全局请求拦截')
-    console.group(config);
-    return  config;
+instance.interceptors.request.use(config=>{
+  var token = "12321"
+
+  if(config.push=='/'){
+  }else {
+    if(token){
+    config.headers.token=token
+    }
+    return config;
+  }
   },
-  function (err) {
-    return Promise.reject(err);
+  error=>{
+  return Promise.reject(error)
   }
 )
 
@@ -37,6 +42,7 @@ instance.interceptors.response.use(
  */
 export default function (method, url, data = null,config=null) {
   method = method.toLowerCase();
+
   url="http://localhost:4000"+url;
   if (method == 'post') {
     return instance.post(url, data,config)

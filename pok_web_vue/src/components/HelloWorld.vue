@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login1" style="margin: 15% 10% 10% 10%">
         <Login/>
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lange="less" scoped>
+
+.login1{
+  background-color: blanchedalmond;
+}
+
 h1,
 h2 {
   font-weight: normal;

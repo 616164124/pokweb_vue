@@ -1,13 +1,22 @@
 <template>
   <div class="home">
-    <div  class="name">
-      用户ID: <User/>
+    <div class="name">
+      用户ID:
+      <User/>
     </div>
     <br/>
     <br/>
     <br/>
-    <div  v-for="(item ,i) in data">
-      <el-button  @click="menu(item.menu_url)">{{ item.menu_name }}</el-button>
+    <el-row v-for="(item,i) in data">
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <span @click="menu(item.menu_url)">{{ item.menu_name }}</span>
+        </div>
+      </el-col>
+    </el-row>
+
+    <div v-for="(item ,i) in data">
+      <el-button @click="menu(item.menu_url)">{{ item.menu_name }}</el-button>
       <p></p>
     </div>
   </div>
@@ -16,6 +25,7 @@
 <script>
 import axios from "axios";
 import User from "./User";
+
 export default {
   name: "Home",
   components: {User},
@@ -33,12 +43,12 @@ export default {
     this.data = data.getDate();
     var item = sessionStorage.getItem("token");
     var userId = item.split("_")[0];
-    this.userId=userId;
+    this.userId = userId;
 
     console.log(item)
     //获取菜单
-    axios.post("http://localhost:4000/pokweb/getMenu",{
-      "token":item
+    axios.post("http://localhost:4000/pokweb/getMenu", {
+      "token": item
     }).then((res) => {
       this.data = res.data.resultObj
     })
@@ -46,15 +56,15 @@ export default {
   },
   methods: {
     menu(e) {
-      this.$router.push("/"+e);
+      this.$router.push("/" + e);
     }
   }
 }
 </script>
 
-<style >
+<style>
 
-.name{
+.name {
   float: right !important;
   position: relative;
   font-size: 20px;

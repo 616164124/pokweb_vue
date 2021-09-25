@@ -8,9 +8,8 @@ import axios from "./plugin/axios";
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import 'element-ui/lib/index.js'
 Vue.use(ElementUI);
-
 Vue.config.productionTip = false
 
 

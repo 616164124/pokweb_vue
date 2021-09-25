@@ -6,11 +6,12 @@
       <el-radio v-model="radio" label="gzry">工作人员</el-radio>
       <el-radio v-model="radio" label="admin">admin</el-radio>
     </div>
-    <div class="vue-login1">
-      <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
-      <el-input placeholder="请输入密码" v-model="password" name="password" show-password></el-input>
+    <div class="vue-login1" style="margin: 10px 60% 10% 42%; text-align: center; width: 200px">
+      <el-input placeholder="请输入用户名" v-model="name" name="name" clearable ></el-input>
+      <el-input placeholder="请输入密码" v-model="password" type="password" show-password></el-input>
       <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
     </div>
+
   </div>
 </template>
 
@@ -61,6 +62,14 @@ export default {
     },
     myget() {
 
+    },
+    test(){
+      axios1("post",URLData.login,{
+        h:123,
+        uuu:"1234"
+      }).then((res)=>{
+        console.log(res);
+      })
     }
 
 
@@ -76,24 +85,6 @@ export default {
 </script>
 
 <style>
-button {
-  margin-top: 10px;
-}
-
-.login-input {
-  margin: 0 0 0 0;
-}
-
-
-.vue-login {
-  margin-top: 20px;
-  text-align: center;
-}
-
-
-.el-input__inner {
-  width: 40% !important;
-}
 
 .el-input {
   margin-top: 10px;
