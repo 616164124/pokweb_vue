@@ -85,7 +85,10 @@ export default {
 </script>
 
 <style>
-
+.vue-login{
+ margin-top: 10px;
+  margin-bottom: 10px;
+}
 .el-input {
   margin-top: 10px;
 }
