@@ -4,6 +4,7 @@ import HelloWorld from '../components/HelloWorld'
 import Login from "../components/webpage/Login";
 import Home from "../components/webpage/Home";
 import Menu_100 from "../components/webpage/Menu_100";
+import Register from "../components/webpage/Register";
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
         path: "/menu_100",
         name: "menu_100",
         component: Menu_100,
+      }, {
+        path: "/register",
+        name: "register",
+        component: Register,
       }
 
     ]

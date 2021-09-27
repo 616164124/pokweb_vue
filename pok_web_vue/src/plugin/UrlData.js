@@ -4,7 +4,7 @@ const URLData={
   baseurl:"http://localhost:4000",
   mockurl:"",
   //登录
-  login:"/pokweb/login",
+  login: "/pokweb/login",
   //学生资料
   studentInformation:"/pokweb/student/Information",
 }
