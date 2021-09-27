@@ -10,7 +10,7 @@
     <el-row v-for="(item,key) in data">
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <span @click="menu(item.menu_url)">{{key}}{{ item.menu_name }}</span>
+          <span @click="menu(item.menu_url)">{{ item.menu_name }}</span>
         </div>
       </el-col>
     </el-row>
