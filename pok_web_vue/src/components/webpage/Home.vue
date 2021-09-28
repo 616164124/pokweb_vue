@@ -7,24 +7,20 @@
     <br/>
     <br/>
     <br/>
-    <el-row v-for="(item,key) in data">
-      <el-col :span="6">
+    <el-row >
+      <el-col :span="6" v-for="(item,key) in data">
         <div class="grid-content bg-purple">
           <span @click="menu(item.menu_url)">{{ item.menu_name }}</span>
         </div>
       </el-col>
     </el-row>
-
-    <div v-for="(item ,i) in data">
-      <el-button @click="menu(item.menu_url)">{{ item.menu_name }}</el-button>
-      <p></p>
-    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import User from "./User";
+import axios1 from "../../plugin/axios"
+import URLData from "../../plugin/UrlData";
 
 export default {
   name: "Home",
@@ -37,26 +33,17 @@ export default {
     }
   },
   created() {
-
     console.log("home.vue")
     var data = new Date();
     this.data = data.getDate();
-    var item = sessionStorage.getItem("token");
-    var userId = item.split("_")[0];
-    this.userId = userId;
+    var item = sessionStorage.getItem("user");
+    var user = JSON.parse(item);
 
-    console.log(item)
-    //获取菜单
-    axios.post("http://localhost:4000/pokweb/getMenu", {
-      // "token": item
-    },{
-      headers:{
-        token:item
-      }
-    }).then((res) => {
+    axios1("post",URLData.getMenu,{
+      id:user.id
+    }).then((res)=>{
       this.data = res.data.resultObj
     })
-
   },
   methods: {
     menu(e) {

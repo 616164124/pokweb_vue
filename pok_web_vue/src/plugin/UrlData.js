@@ -7,6 +7,8 @@ const URLData={
   login: "/pokweb/login",
   //学生资料
   studentInformation:"/pokweb/student/Information",
+  //获取菜单/pokweb/getMenu
+  getMenu:"/pokweb/getMenu",
 }
 
 export default URLData;

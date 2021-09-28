@@ -50,41 +50,26 @@ export default function (method, url, data = null, config = null) {
   url = "http://localhost:4000" + url;
   if (method == "post") {
     return axios.post(url, {
-      data
-    }, {
-      headers: {
-        token: tokens
-      }
-    })
+      data,token:tokens
+    }
+    )
   }
 
   if (method == "get") {
     return axios.get(url, {
-      data
-    }, {
-      headers: {
-        token: tokens
-      }
+      data,token:tokens
     })
   }
 
   if (method == "put") {
     return axios.put(url, {
-      data
-    }, {
-      headers: {
-        token: tokens
-      }
+      data,token:tokens
     })
   }
 
   if (method == "delete") {
     return axios.delete(url, {
-      data
-    }, {
-      headers: {
-        token: tokens
-      }
+      data,token:tokens
     })
   }
 

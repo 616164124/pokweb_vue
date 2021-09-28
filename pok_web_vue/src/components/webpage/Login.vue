@@ -9,6 +9,12 @@
     <div class="vue-login1" style="margin: 10px 60% 10% 42%; text-align: center; width: 200px">
       <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
       <el-input placeholder="请输入密码" v-model="password" type="password" show-password></el-input>
+      <div class="verify">
+        <il>
+          <h1>sf</h1>
+          <el-input placeholder="请输入验证码" v-model="verify" name="name" ></el-input>
+        </il>
+      </div>
       <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
     </div>
 
@@ -19,7 +25,6 @@
 import axios from "../../plugin/axios"
 import Home from "./Home";
 import URLData from "../../plugin/UrlData";
-
 export default {
   name: "Login",
   components: {Home},
@@ -84,6 +89,10 @@ export default {
 .vue-login {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.verify{
+  width: 100px;
+  height: 50px;
 }
 
 .el-input {
