@@ -27,7 +27,8 @@ instance.interceptors.request.use(config => {
 //响应拦截
 //所有的网络返回数据之后都会先执行这个方法
 instance.interceptors.response.use(
-
+  (response) => {
+    console.log(response)}
 );
 
 
@@ -42,6 +43,7 @@ instance.interceptors.response.use(
 export default function (method, url, data = null, config = null) {
   method = method.toLowerCase();
   var tokens
+  var data
   if (url == URLData.login) {
     tokens = "login";
   } else {
@@ -50,43 +52,25 @@ export default function (method, url, data = null, config = null) {
   url = "http://localhost:4000" + url;
   if (method == "post") {
     return axios.post(url, {
-      data,token:tokens
-    }
-    )
+      data, token: tokens
+    })
   }
 
   if (method == "get") {
     return axios.get(url, {
-      data,token:tokens
+      data, token: tokens
     })
   }
 
   if (method == "put") {
     return axios.put(url, {
-      data,token:tokens
+      data, token: tokens
     })
   }
 
   if (method == "delete") {
-    return axios.delete(url, {
-      data,token:tokens
+    return axios.delete(url,{
+      data, token: tokens
     })
   }
-
-
-  //
-  // if (method == 'post') {
-  //   return instance.post(url, {params:data,token:tokens},config)
-  // } else if (method == 'get') {
-  //   return instance.get(url, { params: data,token:tokens})
-  // } else if (method == 'delete') {
-  //   return instance.delete(url, { params: data,token:tokens })
-  // }else if(method == 'put'){
-  //   return instance.put(url,{ params: data,token:tokens })
-  // }else{
-  //   console.error('未知的method'+method)
-  //   return false
-  // }
-
-
 }

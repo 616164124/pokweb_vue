@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div>
+      {{date}}
+    </div>
     <router-view/>
   </div>
 </template>
@@ -7,7 +10,20 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+      date:""
+    }
+  },
+  methods:{
+
+  },
+  created() {
+
+      this.date =new Date().getFullYear()+"年"+new Date().getMonth()+"月"+new Date().getDate()+"日"  ;
+
+  }
 }
 </script>
 

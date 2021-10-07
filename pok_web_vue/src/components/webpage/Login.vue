@@ -1,6 +1,6 @@
 <template>
   <div class="vue-login">
-    <div>
+    <div style="margin: auto">
       <el-radio v-model="radio" label="lsyh">临时用户</el-radio>
       <el-radio v-model="radio" label="xs">学生</el-radio>
       <el-radio v-model="radio" label="gzry">工作人员</el-radio>
@@ -9,15 +9,15 @@
     <div class="vue-login1" style="margin: 10px 60% 10% 42%; text-align: center; width: 200px">
       <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
       <el-input placeholder="请输入密码" v-model="password" type="password" show-password></el-input>
-      <div class="verify">
-        <il>
-          <h1>sf</h1>
-          <el-input placeholder="请输入验证码" v-model="verify" name="name" ></el-input>
-        </il>
+      <div style="float: left">
+        <el-input placeholder="验证码" v-model="verify" name="verify" clearable style="width: 100px; float: left"></el-input>
+        <el-button @click="getVerify()"  style="width: 100px ;">获取验证码</el-button>
+        <span style="">jkh1</span>
       </div>
+      <br/>
+      <br/>
       <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
     </div>
-
   </div>
 </template>
 
@@ -25,6 +25,7 @@
 import axios from "../../plugin/axios"
 import Home from "./Home";
 import URLData from "../../plugin/UrlData";
+
 export default {
   name: "Login",
   components: {Home},
@@ -33,7 +34,9 @@ export default {
       radio: "lsyh",//默认为临时用户
       name: '',
       password: '',
-      date: ''
+      date: '',
+      verify: "",
+      verifycode:""
     }
   },
   methods: {
@@ -43,9 +46,9 @@ export default {
         password: this.password,
         radio: this.radio
       }).then((data) => {
-        console.log(data)
+        // console.log(data)
         if (data.data.resultCode == "200") {
-          console.log(data.data.resultObj.user)
+          // console.log(data.data.resultObj.user)
           sessionStorage.setItem("token", data.data.resultObj.token);
           sessionStorage.setItem("user", JSON.stringify(data.data.resultObj.user));
           this.$router.push("/home")
@@ -56,7 +59,7 @@ export default {
     },
     //只注册成为临时用户
     register() {
-       this.$router.push("/register");
+      this.$router.push("/register");
     },
     anniu: function () {
       console.log(this.date);
@@ -90,7 +93,8 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.verify{
+
+.verify {
   width: 100px;
   height: 50px;
 }
