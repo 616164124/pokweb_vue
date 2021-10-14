@@ -1,5 +1,5 @@
 <template>
-  <div class="login1" style="margin: 15% 10% 10% 10%">
+  <div class="login1" style="margin: 1% 10% 10% 10%">
         <Login/>
   </div>
 </template>

@@ -33,7 +33,6 @@ export default {
     }
   },
   created() {
-    console.log("home.vue")
     var data = new Date();
     this.data = data.getDate();
     var item = sessionStorage.getItem("user");

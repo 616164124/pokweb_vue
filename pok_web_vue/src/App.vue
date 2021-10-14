@@ -1,39 +1,58 @@
 <template>
   <div id="app">
-    <div>
-      {{date}}
+    <div id="date">
+      {{ date }}
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  data(){
-    return{
-      date:""
+  name: "App",
+  data() {
+    return {
+      date: "",
+    };
+  },
+  methods: {},
+  created() {
+    var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
+    this.timer = setInterval(function () {
+      _this.date = this.date =
+        new Date().getFullYear() +
+        "年" +
+        (new Date().getUTCMonth() + 1) +
+        "月" +
+        new Date().getDate() +
+        "日" +
+        new Date().getHours() +
+        "时" +
+        new Date().getMinutes() +
+        "分" +
+        new Date().getSeconds() +
+        "秒";
+    }, 1000);
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
   },
-  methods:{
-
-  },
-  created() {
-
-      this.date =new Date().getFullYear()+"年"+new Date().getMonth()+"月"+new Date().getDate()+"日"  ;
-
-  }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#date {
+  margin: 0%;
+  margin-bottom: 10px;
 }
 </style>

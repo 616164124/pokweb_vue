@@ -17,6 +17,8 @@
       <br/>
       <br/>
       <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
+            <el-button type="primary" @click="register()" style="font-size: 20px">注册</el-button>
+
     </div>
   </div>
 </template>
@@ -31,7 +33,7 @@ export default {
   components: {Home},
   data() {
     return {
-      radio: "lsyh",//默认为临时用户
+      radio: "xs",//默认为学生
       name: '',
       password: '',
       date: '',
@@ -64,8 +66,9 @@ export default {
     anniu: function () {
       console.log(this.date);
     },
-    myget() {
-
+    register() {
+      console.log("Register");
+      this.$router.push("/register");
     },
     test() {
       axios1("post", URLData.login, {
