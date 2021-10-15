@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import URLData from "../src/plugin/UrlData"
 export default {
   name: "App",
   data() {
@@ -15,8 +16,11 @@ export default {
       date: "",
     };
   },
-  methods: {},
+  methods: {
+   
+  },
   created() {
+  
     var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
     this.timer = setInterval(function () {
       _this.date = this.date =
@@ -39,6 +43,9 @@ export default {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
   },
+
+ 
+
 };
 </script>
 
@@ -48,11 +55,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #0b0c0c;
   margin-top: 60px;
 }
 #date {
-  margin: 0%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 </style>

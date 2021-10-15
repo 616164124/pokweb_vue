@@ -9,7 +9,7 @@
     <br/>
     <el-row >
       <el-col :span="6" v-for="(item,key) in data">
-        <div class="grid-content bg-purple">
+        <div class="grid-content bg-purple" >
           <span @click="menu(item.menu_url)">{{ item.menu_name }}</span>
         </div>
       </el-col>

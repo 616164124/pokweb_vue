@@ -1,18 +1,18 @@
 <template>
   <div class="vue-login">
-    <div style="margin: auto">
+    <div style="">
       <el-radio v-model="radio" label="lsyh">临时用户</el-radio>
       <el-radio v-model="radio" label="xs">学生</el-radio>
       <el-radio v-model="radio" label="gzry">工作人员</el-radio>
       <el-radio v-model="radio" label="admin">admin</el-radio>
     </div>
-    <div class="vue-login1" style="margin: 10px 60% 10% 42%; text-align: center; width: 200px">
+    <div class="vue-login1" style="text-align: center; margin: auto;width: 200px">
       <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
       <el-input placeholder="请输入密码" v-model="password" type="password" show-password></el-input>
       <div style="float: left">
         <el-input placeholder="验证码" v-model="verify" name="verify" clearable style="width: 100px; float: left"></el-input>
-        <el-button @click="getVerify()"  style="width: 100px ;">获取验证码</el-button>
-        <span style="">jkh1</span>
+        <p/><el-button @click="getVerify()"  style="width: 100px ;">获取验证码</el-button>
+        &nbsp;&nbsp;<span style="width:60px;height:50px;background-color: burlywood;FONT-SIZE: xxx-large;">UJK1</span>
       </div>
       <br/>
       <br/>
@@ -66,10 +66,7 @@ export default {
     anniu: function () {
       console.log(this.date);
     },
-    register() {
-      console.log("Register");
-      this.$router.push("/register");
-    },
+    
     test() {
       axios1("post", URLData.login, {
         h: 123,
@@ -92,10 +89,7 @@ export default {
 </script>
 
 <style>
-.vue-login {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+
 
 .verify {
   width: 100px;
