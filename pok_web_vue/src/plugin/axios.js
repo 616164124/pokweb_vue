@@ -51,7 +51,6 @@ export default function (method, url, data = null, config = null) {
   console.log("axios..."+url);
   console.log(data);
   var tokens
-  var data
   //在urls中的地址都是携带的tokens=login
   var urls = [URLData.login,URLData.Verification,URLData.register]
   if (url.indexOf(urls)){
@@ -59,18 +58,15 @@ export default function (method, url, data = null, config = null) {
   }else{
     tokens = sessionStorage.getItem("token");
   }
-  //urls中的url不用登录
-  var urls = [URLData.login,URLData.register,URLData.Verification]
   //不是login页面时如果没有token值则直接跳到login页面
   if (sessionStorage.getItem("token") == null && !(url.indexOf(urls))) {
     console.log("kfs");
     alert("请先登录。。。。")
     window.location.href="http://localhost:8080/#/login";
     return;
-  } 
-
+  }
   // url = "http://116.62.152.14:4000" + url;
-   url= "http://localhost:4000"+ url;
+   url= "http://localhost:4000"+ url+"?_v="+Date.now();
   if (method == "post") {
     return axios.post(url, {
       data, token: tokens

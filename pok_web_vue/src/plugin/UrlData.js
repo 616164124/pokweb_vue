@@ -11,7 +11,7 @@ const URLData = {
   getMenu: "/pokweb/getMenu",
   //注册为临时用户
   register: "/pokweb/register",
-  //电子邮件验证码
+  //获取电子邮件验证码
   Verification: "/pokweb/emailcode"
 
 }

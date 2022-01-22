@@ -8,8 +8,8 @@
     <br/>
     <br/>
     <el-row >
-      <el-col :span="6" v-for="(item,key) in data">
-        <div class="grid-content bg-purple" >
+      <el-col :span="6" v-for="(i,item) in data">
+        <div class="grid-content bg-purple"  key="i">
           <span @click="menu(item.menu_url)">{{ item.menu_name }}</span>
         </div>
       </el-col>
@@ -38,7 +38,7 @@ export default {
     var item = sessionStorage.getItem("user");
     var user = JSON.parse(item);
 
-    axios1("post",URLData.getMenu,{
+    axios("post",URLData.getMenu,{
       id:user.id
     }).then((res)=>{
       this.data = res.data.resultObj

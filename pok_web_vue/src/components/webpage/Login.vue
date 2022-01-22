@@ -1,24 +1,26 @@
 <template>
   <div class="vue-login">
     <div style="">
-      <el-radio v-model="radio" label="lsyh">临时用户</el-radio>
+      <!-- <el-radio v-model="radio" label="lsyh">临时用户</el-radio>
       <el-radio v-model="radio" label="xs">学生</el-radio>
       <el-radio v-model="radio" label="gzry">工作人员</el-radio>
-      <el-radio v-model="radio" label="admin">admin</el-radio>
+      <el-radio v-model="radio" label="admin">admin</el-radio> -->
     </div>
     <div class="vue-login1" style="text-align: center; margin: auto;width: 200px">
-      <el-input placeholder="请输入用户名" v-model="name" name="name" clearable></el-input>
+      <el-input placeholder="请输入邮箱" v-model="name" name="name" clearable></el-input>
       <el-input placeholder="请输入密码" v-model="password" type="password" show-password></el-input>
-      <div style="float: left">
-        <el-input placeholder="验证码" v-model="verify" name="verify" clearable style="width: 100px; float: left"></el-input>
-        <p/><el-button @click="getVerify()"  style="width: 100px ;">获取验证码</el-button>
-        &nbsp;&nbsp;<span style="width:60px;height:50px;background-color: burlywood;FONT-SIZE: xxx-large;">UJK1</span>
-      </div>
-      <br/>
-      <br/>
-      <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
-            <el-button type="primary" @click="register()" style="font-size: 20px">注册</el-button>
 
+      <el-input placeholder="请输入邮箱的验证码" v-model="verify" name="verify" clearable
+                style="width: 200px; float: left"></el-input>
+      <el-button @click="getVerify()" style="    width: 150px;
+    padding: 0px;">发送验证码</el-button>
+      &nbsp;&nbsp;<span style="width:60px;height:50px;background-color: burlywood;FONT-SIZE: xxx-large;"></span>
+      <br/>
+      <br/>
+      <div>
+        <el-button type="primary" @click="login()" style="font-size: 20px">登录</el-button>
+        <el-button type="primary" @click="register()" style="font-size: 20px">注册</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -38,21 +40,21 @@ export default {
       password: '',
       date: '',
       verify: "",
-      verifycode:""
+      verifycode: ""
     }
   },
   methods: {
     login() {
       axios("post", URLData.login, {
-        name: this.name,
+        username: this.name,
         password: this.password,
         radio: this.radio
       }).then((data) => {
         // console.log(data)
-        if (data.data.resultCode == "200") {
+        if (data.data.resultCode == "000000") {
           // console.log(data.data.resultObj.user)
-          sessionStorage.setItem("token", data.data.resultObj.token);
-          sessionStorage.setItem("user", JSON.stringify(data.data.resultObj.user));
+          sessionStorage.setItem("token", data.data.resultObj);
+          sessionStorage.setItem("user", "john");
           this.$router.push("/home")
         } else if (data.data.resultCode == "888888") {
           alert(data.data.resultMsg)
@@ -66,7 +68,26 @@ export default {
     anniu: function () {
       console.log(this.date);
     },
-    
+    getVerify() {
+      //发送验证码邮件
+      axios("post", URLData.Verification, {
+        email: this.email,
+      }).then((res) => {
+        console.log("");
+
+        this.$prompt("请输入邮件中的6位验证码(3分钟内有效)", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+        })
+          .then(({value}) => {
+            this.yzm = value;
+          })
+          .then(() => {
+            this.register();
+          });
+      });
+    },
+
     test() {
       axios1("post", URLData.login, {
         h: 123,
