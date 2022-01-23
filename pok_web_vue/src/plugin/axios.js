@@ -10,23 +10,23 @@ const instance = axios.create({
 //请求拦截
 //所有的网络请求都会先走这个方法
 instance.interceptors.request.use(config => {
-  var token = "12321"
+    var token = "12321"
 
-  if (config.push == '/') {
-  } else {
-    if (token) {
-      config.headers.token = token
+    if (config.push == '/') {
+    } else {
+      if (token) {
+        config.headers.token = token
+      }
+      return config;
     }
-    return config;
-  }
-},
+  },
   error => {
     return Promise.reject(error)
   }
 )
 
-instance.interceptors.request.use((request)=>{
-console.log("request===234");
+instance.interceptors.request.use((request) => {
+  console.log("request===234");
 })
 //响应拦截
 //所有的网络返回数据之后都会先执行这个方法
@@ -48,25 +48,25 @@ instance.interceptors.response.use(
  */
 export default function (method, url, data = null, config = null) {
   method = method.toLowerCase();
-  console.log("axios..."+url);
+  console.log("axios..." + url);
   console.log(data);
   var tokens
   //在urls中的地址都是携带的tokens=login
-  var urls = [URLData.login,URLData.Verification,URLData.register]
-  if (url.indexOf(urls)){
-    tokens="login"
-  }else{
+  var urls = [URLData.login, URLData.Verification, URLData.register]
+  if (url.indexOf(urls)) {
+    tokens = "login"
+  } else {
     tokens = sessionStorage.getItem("token");
   }
   //不是login页面时如果没有token值则直接跳到login页面
   if (sessionStorage.getItem("token") == null && !(url.indexOf(urls))) {
     console.log("kfs");
     alert("请先登录。。。。")
-    window.location.href="http://localhost:8080/#/login";
+    window.location.href = "http://localhost:8080/#/login";
     return;
   }
   // url = "http://116.62.152.14:4000" + url;
-   url= "http://localhost:4000"+ url+"?_v="+Date.now();
+  url = "http://localhost:4000" + url + "?_v=" + Date.now();
   if (method == "post") {
     return axios.post(url, {
       data, token: tokens

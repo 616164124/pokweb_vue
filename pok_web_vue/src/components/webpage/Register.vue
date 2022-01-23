@@ -2,8 +2,8 @@
   <div class="register">
     <el-input
       placeholder="电子邮箱（例如：123@vt.com）"
-      v-model="email"
-      name="email"
+      v-model="username"
+      name="username"
       clearable
     ></el-input
     >
@@ -26,18 +26,20 @@
     <br/><br/>
     <el-input
       placeholder="输入邮箱中的验证码"
-      v-model="password2"
-      name="password2"
-      show-password
+      v-model="yzm"
+      name="yzm"
     ></el-input
     >
     <br/><br/>
     <el-button @click="register()">注册</el-button>
     <el-button @click="getVerification()">获取验证码</el-button>
+    <el-button @click="openmsg()">测试</el-button>
+
   </div>
 </template>
 
 <script>
+import sha256 from "js-sha256"
 import axios from "../../plugin/axios";
 import URLData from "../../plugin/UrlData";
 
@@ -45,51 +47,61 @@ export default {
   name: "Register.vue",
   data() {
     return {
-      name: "",
+      username: "",
       password: "",
       password2: "",
       email: "",
       yzm: "",//用户输入的验证码
     };
   },
+
   methods: {
+    // sha256加密密码
+    setSha(value) {
+      let sha256 = require("js-sha256").sha256//这里用的是require方法，所以没用import
+      return sha256(value) + "";
+
+    },
+    openmsg(msg) {
+      this.$alert(msg, '消息', {
+        confirmButtonText: '确定',
+      });
+    },
+
     //  验证验证码成功后，注册成功后  ， 跳转到登录页面
     register() {
-
-      console.log(this.yzm);
+      if(this.setSha(this.password) != this.setSha(this.password2)){
+        this.openmsg("2次密码不同")
+        return;
+      }
+     var password=  this.setSha(this.password)
       axios("post", URLData.register, {
-        name: this.name,
-        password: this.password,
-        password2: this.password2,
+        username: this.username,
+        password: password,
         email: this.email,
         yzm: this.yzm,
       }).then((res) => {
-        open("注册成功")
-      });
-    },
-    open(msg) {
-      this.$alert(msg, {
-        confirmButtonText: '确定',
+        this.openmsg("注册成功")
       });
     },
 
 
     //
     getVerification() {
-
-      if (this.name.split("@")[0].length < 7) {
-        open("邮箱名太短")
+      if (this.username.split("@")[0].length <5) {
+        this.openmsg("邮箱名太短")
+        return;
       }
 
-      if (this.password != this.password2) {
-        open("2次密码输入不一致！")
+      if(this.setSha(this.password) != this.setSha(this.password2)){
+        this.openmsg("2次密码不同")
         return;
       }
       //发送验证码邮件
       axios("post", URLData.Verification, {
-        email: this.email,
+        username: this.username,
       }).then((res) => {
-        open("已发送验证码，3分钟内有效")
+        this.openmsg("已发送验证码，3分钟内有效")
       });
     },
   },

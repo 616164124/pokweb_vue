@@ -7,6 +7,8 @@
     <br/>
     <br/>
     <br/>
+    <div style="background-color: #66b1ff">
+
     <el-row >
       <el-col :span="6" v-for="(i,item) in data">
         <div class="grid-content bg-purple"  key="i">
@@ -14,6 +16,7 @@
         </div>
       </el-col>
     </el-row>
+    </div>
   </div>
 </template>
 

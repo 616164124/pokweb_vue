@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "js-sha256": "^0.9.0",
     "axios": "^0.21.1",
     "element-ui": "^2.15.6",
     "view-design": "^4.7.0-beta.9",

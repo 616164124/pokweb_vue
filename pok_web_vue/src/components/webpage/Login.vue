@@ -13,7 +13,8 @@
       <el-input placeholder="请输入邮箱的验证码" v-model="verify" name="verify" clearable
                 style="width: 200px; float: left"></el-input>
       <el-button @click="getVerify()" style="    width: 150px;
-    padding: 0px;">发送验证码</el-button>
+    padding: 0px;">发送验证码
+      </el-button>
       &nbsp;&nbsp;<span style="width:60px;height:50px;background-color: burlywood;FONT-SIZE: xxx-large;"></span>
       <br/>
       <br/>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import sha256 from "js-sha256"
 import axios from "../../plugin/axios"
 import Home from "./Home";
 import URLData from "../../plugin/UrlData";
@@ -44,11 +46,17 @@ export default {
     }
   },
   methods: {
+    // sha256加密密码
+    setSha(value) {
+      let sha256 = require("js-sha256").sha256//这里用的是require方法，所以没用import
+      return sha256(value) + "";
+
+    },
     login() {
       axios("post", URLData.login, {
         username: this.name,
-        password: this.password,
-        radio: this.radio
+        password: this.setSha(this.password),
+        verify: this.verify
       }).then((data) => {
         // console.log(data)
         if (data.data.resultCode == "000000") {
@@ -69,22 +77,15 @@ export default {
       console.log(this.date);
     },
     getVerify() {
+      if (this.name == "") {
+        this.$alert("不能为空")
+        return;
+      }
       //发送验证码邮件
       axios("post", URLData.Verification, {
-        email: this.email,
+        username: this.name,
       }).then((res) => {
-        console.log("");
 
-        this.$prompt("请输入邮件中的6位验证码(3分钟内有效)", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-        })
-          .then(({value}) => {
-            this.yzm = value;
-          })
-          .then(() => {
-            this.register();
-          });
       });
     },
 
